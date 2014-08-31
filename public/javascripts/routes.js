@@ -17,6 +17,10 @@ routes.config(['$routeProvider', '$locationProvider', function($routeProvider, $
     templateUrl: 'home',
     controller: 'HomeCtrl'
   }).
+  when('/todo', {
+    templateUrl: 'todo',
+    controller: 'ToDoCtrl'
+  }).
   otherwise({
     redirectTo: '/'
   });
