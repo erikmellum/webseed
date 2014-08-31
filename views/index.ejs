@@ -22,6 +22,19 @@
     <a href="#/home">Home</a>
     <a href="#/other">Other</a>
     <a href="#/todo">ToDo</a>
+    <div ng-controller="QuoteCtrl">
+    <input type="text" class="" placeholder="I want to buy a puppy that will love me forever" ng-model="quote.text">
+    <input type="text" class="" placeholder="Erik" ng-model="author.text">
+    <input type="text" class="" placeholder="Puppy Quote" ng-model="name.text">
+    <div ng-repeat="quote in quotes">
+      <label>
+        <input type="checkbox" ng-click="deleteQuote(quote._id)">
+        <blockquote>{{quote.quote + ', ' + quote.author + ', ' + quote.name}}</blockquote>
+      </label>
+    </div>
+    
+    <button type="submit" class="" ng-click="createQuote()">Add</button>
+    </div>
     <div ng-view></div>
   </body>
 </html>

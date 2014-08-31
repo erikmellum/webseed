@@ -50,3 +50,41 @@ controllers.controller('ToDoCtrl', function($scope, $http){
       });
   };
 })
+
+controllers.controller('QuoteCtrl', function($scope, $http){
+  $http.get('/api/quotes')
+    .success(function(data) {
+      $scope.quotes = data;
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+
+  // when submitting the add form, send the text to the node API
+  $scope.createQuote = function() {
+    $http.post('/api/quotes', $scope.name, $scope.author, $scope.quote)
+      .success(function(data) {
+        $scope.author = {}; // clear the form so our user is ready to enter another
+        $scope.name = {}; // clear the form so our user is ready to enter another
+        $scope.quote = {}; // clear the form so our user is ready to enter another
+        $scope.quotes = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+  };
+
+  // delete a todo after checking it
+  $scope.deleteQuote = function(id) {
+    $http.delete('/api/quotes/' + id)
+      .success(function(data) {
+        $scope.quotes = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+  };
+});
