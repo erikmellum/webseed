@@ -1,0 +1,1 @@
+var animations = angular.module('animations', ['ngAnimate']);
