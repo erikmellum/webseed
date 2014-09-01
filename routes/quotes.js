@@ -5,25 +5,25 @@ var Quote = require('../models/quote');
 
 router.get('/', function(req, res) {
 
-    // use mongoose to get all todos in the database
-    Quote.find(function(err, quotes) {
+  // use mongoose to get all todos in the database
+  Quote.find(function(err, quotes) {
 
-      // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-      if (err)
-        res.send(err)
+    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+    if (err)
+      res.send(err)
 
-      res.json(quotes); // return all quotes in JSON format
-    });
+    res.json(quotes); // return all quotes in JSON format
   });
+});
 
   // create quote and send back all quotes after creation
 router.post('/', function(req, res) {
 
     // create a quote, information comes from AJAX request from Angular
     Quote.create({
-      name : req.body.text,
-      author : req.body.text,
-      quote : req.body.text,
+      name : req.body.name,
+      author : req.body.author,
+      quote : req.body.quote,
       done : false
     }, function(err, quote) {
       if (err)

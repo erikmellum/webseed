@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Quote = require('../models/quote');
-var Todo = require('../models/todo');
 
 router.get('/todo', function(req, res) {
   res.render('partials/todo', { title: 'ToDo' });
