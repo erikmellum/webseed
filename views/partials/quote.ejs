@@ -1,0 +1,14 @@
+<div>
+    <input class="" placeholder="Quote" ng-model="formQuote">
+    <input class="" placeholder="Author" ng-model="formAuthor">
+    <input class="" placeholder="Name" ng-model="formName">
+    <button type="submit" class="" ng-click="createQuote()">Add Quote</button>
+    <div ng-repeat="quote in quotes">
+      <label>
+        Delete <input type="checkbox" ng-click="deleteQuote(quote._id)">
+        <q>{{quote.quote + ', ' + quote.author + ', ' + quote.name}}</q>        
+      </label>
+    </div>
+
+
+</div>

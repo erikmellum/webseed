@@ -34,9 +34,9 @@ router.post('/quotes', function(req, res) {
 
     // create a quote, information comes from AJAX request from Angular
     Quote.create({
-      name : req.body.text,
-      author : req.body.text,
-      quote : req.body.text,
+      name : req.body.name,
+      author : req.body.author,
+      quote : req.body.quote,
       done : false
     }, function(err, quote) {
       if (err)
@@ -120,6 +120,22 @@ router.delete('/todos/:todo_id', function(req, res) {
     });
 });
 
+router.post('/test', function(req, res){
+  var bear = new Bear();
+  bear.name = req.body.name;
+
+  bear.save(function(err) {
+    if (err)
+      res.send(err);
+
+    Bear.find(function(err, bears) {
+      if (err)
+        res.send(err);
+
+      res.json(bears);
+    });
+  });
+});
 
 router.post('/bears', function(req, res){
   var bear = new Bear();

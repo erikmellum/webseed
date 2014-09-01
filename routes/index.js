@@ -20,6 +20,14 @@ router.get('/about', function(req, res) {
   res.render('partials/about', { title: 'About' });
 });
 
+router.get('/bear', function(req, res) {
+  res.render('partials/bear', { title: 'Bear' });
+});
+
+router.get('/quote', function(req, res) {
+  res.render('partials/quote', { title: 'Quote' });
+});
+
 router.get('/', function(req, res) {
   res.render('index', { title: 'Index' });
 });

@@ -21,6 +21,14 @@ routes.config(['$routeProvider', '$locationProvider', function($routeProvider, $
     templateUrl: 'todo',
     controller: 'ToDoCtrl'
   }).
+  when('/bear', {
+    templateUrl: 'bear',
+    controller: 'BearCtrl'
+  }).
+  when('/quote', {
+    templateUrl: 'quote',
+    controller: 'QuoteCtrl'
+  }).
   otherwise({
     redirectTo: '/'
   });

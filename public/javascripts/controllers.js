@@ -65,17 +65,21 @@ controllers.controller('QuoteCtrl', function($scope, $http){
 
   // when submitting the add form, send the text to the node API
   $scope.createQuote = function() {
-    $http.post('/api/quotes', $scope.name)
-      .success(function(data) {
-        $scope.author = {}; // clear the form so our user is ready to enter another
-        $scope.name = {}; // clear the form so our user is ready to enter another
-        $scope.quote = {}; // clear the form so our user is ready to enter another
-        $scope.quotes = data;
-        console.log(data);
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
+    $http.post('/api/quotes', {
+      'name' : $scope.formName, 
+      'author' : $scope.formAuthor, 
+      'quote' : $scope.formQuote
+    })
+    .success(function(data) {
+      $scope.quotes = data;
+      $scope.formAuthor = ''; // clear the form so our user is ready to enter another
+      $scope.formName = ''; // clear the form so our user is ready to enter another
+      $scope.formQuote = ''; // clear the form so our user is ready to enter another
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
   };
 
   // delete a todo after checking it
@@ -92,6 +96,16 @@ controllers.controller('QuoteCtrl', function($scope, $http){
 });
 
 controllers.controller('BearCtrl', function($scope, $http){
+  $scope.testBear = function() {
+  $http.post('/api/test', {'name' : 'test'})
+    .success(function(data) {
+      $scope.bears = data;
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+  };
   $http.get('/api/bears')
     .success(function(data) {
       $scope.bears = data;
@@ -134,7 +148,7 @@ controllers.controller('BearCtrl', function($scope, $http){
       .error(function(data) {
         console.log('Error: ' + data);
       });
-      
+
     $http.get('/api/bears')
     .success(function(data) {
       $scope.bears = data;
@@ -155,4 +169,6 @@ controllers.controller('BearCtrl', function($scope, $http){
         console.log('Error: ' + data);
       });
   };
+
+
 });
