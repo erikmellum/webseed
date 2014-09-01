@@ -49,7 +49,7 @@ controllers.controller('ToDoCtrl', function($scope, $http){
         console.log('Error: ' + data);
       });
   };
-})
+});
 
 controllers.controller('QuoteCtrl', function($scope, $http){
   $http.get('/api/quotes')
@@ -61,9 +61,11 @@ controllers.controller('QuoteCtrl', function($scope, $http){
       console.log('Error: ' + data);
     });
 
+    
+
   // when submitting the add form, send the text to the node API
   $scope.createQuote = function() {
-    $http.post('/api/quotes', $scope.name, $scope.author, $scope.quote)
+    $http.post('/api/quotes', $scope.name)
       .success(function(data) {
         $scope.author = {}; // clear the form so our user is ready to enter another
         $scope.name = {}; // clear the form so our user is ready to enter another
@@ -81,6 +83,72 @@ controllers.controller('QuoteCtrl', function($scope, $http){
     $http.delete('/api/quotes/' + id)
       .success(function(data) {
         $scope.quotes = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+  };
+});
+
+controllers.controller('BearCtrl', function($scope, $http){
+  $http.get('/api/bears')
+    .success(function(data) {
+      $scope.bears = data;
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+  // when submitting the add form, send the text to the node API
+  $scope.createBear = function() {
+    $http.post('/api/bears', $scope.bearName)
+      .success(function(data) {
+        $scope.bears = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+  };
+
+  // delete a todo after checking it
+  $scope.deleteBear = function(id) {
+    $http.delete('/api/bears/' + id)
+      .success(function(data) {
+        $scope.bears = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+      $scope.bear = {};
+  };
+
+  $scope.updateBear = function(id) {
+    $http.put('/api/bears/' + id, $scope.bearName)
+      .success(function(data) {
+        $scope.bear = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+      
+    $http.get('/api/bears')
+    .success(function(data) {
+      $scope.bears = data;
+      console.log(data);
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+  };
+
+   $scope.viewBear = function(id) {
+    $http.get('/api/bears/' + id)
+      .success(function(data) {
+        $scope.bear = data;
         console.log(data);
       })
       .error(function(data) {

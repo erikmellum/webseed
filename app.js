@@ -5,9 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
+
+//Database and User Administration
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var app = express();
 
@@ -18,7 +23,7 @@ app.set('view engine', 'ejs');
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -32,6 +37,7 @@ db.once('open', function callback () {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -23,17 +23,31 @@
     <a href="#/other">Other</a>
     <a href="#/todo">ToDo</a>
     <div ng-controller="QuoteCtrl">
-    <input type="text" class="" placeholder="I want to buy a puppy that will love me forever" ng-model="quote.text">
-    <input type="text" class="" placeholder="Erik" ng-model="author.text">
-    <input type="text" class="" placeholder="Puppy Quote" ng-model="name.text">
+    <input type="text" class="" placeholder="Quote" ng-model="quote.text">
+    <input type="text" class="" placeholder="Author" ng-model="author.text">
+    <input type="text" class="" placeholder="Name" ng-model="name.text">
+    <button type="submit" class="" ng-click="createQuote()">Add Quote</button>
     <div ng-repeat="quote in quotes">
       <label>
-        <input type="checkbox" ng-click="deleteQuote(quote._id)">
-        <blockquote>{{quote.quote + ', ' + quote.author + ', ' + quote.name}}</blockquote>
+        Delete <input type="checkbox" ng-click="deleteQuote(quote._id)">
+        <q>{{quote.quote + ', ' + quote.author + ', ' + quote.name}}</q>
       </label>
     </div>
     
-    <button type="submit" class="" ng-click="createQuote()">Add</button>
+    
+    </div>
+    <div ng-controller="BearCtrl">
+        <button type="submit" class="" ng-click="createBear()">Add Bear</button>
+        <button type="submit" class="" ng-click="updateBear(bear._id)">Update Bear</button>
+        <input type="text" placeholder="Fuzzy the Bear" ng-model="bearName.text">
+        <span>Current Bear: {{bear.name}}</span>
+        <div ng-repeat="bear in bears">
+          <label>
+            Delete <input type="checkbox" ng-click="deleteBear(bear._id)">
+        </label>
+            <q ng-click="viewBear(bear._id)">{{bear.name}}</q>
+          
+        </div>
     </div>
     <div ng-view></div>
   </body>
