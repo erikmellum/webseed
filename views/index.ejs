@@ -17,16 +17,18 @@
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <script src="lib/jquery/dist/jquery.min.js"></script>
   </head>
-  <body>
-    <a href="#/about">About</a>
-    <a href="#/home">Home</a>
-    <a href="#/other">Other</a>
-    <a href="#/todo">ToDo</a>
-    <a href="#/bear">Bear</a>
-    <a href="#/quote">Quote</a>
-    <a href="#/login">Login</a>
-    <a href="#/signup">Signup</a>
-    <a href="#/profile">Profile</a>
-    <div ng-view></div>
+  <body class="container theme-showcase" role="main">
+      <div class="col-sm-12 fluid-container">
+        <a href="#/about" class="btn btn-lg btn-primary">About</a>
+        <a href="#/home" class="btn btn-lg btn-primary">Home</a>
+        <a href="#/other" class="btn btn-lg btn-primary">Other</a>
+        <a href="#/todo" class="btn btn-lg btn-primary">ToDo</a>
+        <a href="#/bear" class="btn btn-lg btn-primary">Bear</a>
+        <a href="#/quote" class="btn btn-lg btn-primary">Quote</a>
+        <a href="#/login" class="btn btn-lg btn-primary">Login</a>
+        <a href="#/signup" class="btn btn-lg btn-primary">Signup</a>
+        <a href="#/profile" class="btn btn-lg btn-primary">Profile</a>
+        </div>
+    <div ng-view class="col-sm-12"></div>
   </body>
 </html>
