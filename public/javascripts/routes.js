@@ -29,6 +29,22 @@ routes.config(['$routeProvider', '$locationProvider', function($routeProvider, $
     templateUrl: 'quote',
     controller: 'QuoteCtrl'
   }).
+  when('/login', {
+    templateUrl: 'login',
+    controller: 'LoginCtrl'
+  }).
+  when('/signup', {
+    templateUrl: 'signup',
+    controller: 'SignupCtrl'
+  }).
+  when('/user', {
+    templateUrl: 'user',
+    controller: 'UserCtrl'
+  }).
+  when('/profile', {
+    templateUrl: 'profile',
+    controller: 'ProfileCtrl'
+  }).
   otherwise({
     redirectTo: '/'
   });

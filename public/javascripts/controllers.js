@@ -15,6 +15,31 @@ controllers.controller('HomeCtrl', function($scope){
   $scope.message = 'Made it to the home!';
 });
 
+controllers.controller('LoginCtrl', function($scope){
+  $scope.message = 'Login';
+});
+
+controllers.controller('ProfileCtrl', function($scope){
+  $scope.message = 'Profile';
+});
+
+controllers.controller('SignupCtrl', function($scope, $http){
+  $scope.signup = function() {
+    $http.post('/signup', {'email' : $scope.email, 'password' : $scope.password})
+      .success(function(data) {
+        $location.path("/profile");
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+        $location.path("/login");
+      });
+  };
+});
+
+controllers.controller('UserCtrl', function($scope){
+  $scope.message = 'User!';
+});
+
 controllers.controller('ToDoCtrl', function($scope, $http){
   $http.get('/api/todos')
     .success(function(data) {

@@ -4,6 +4,9 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session      = require('express-session');
 
 //Routes
 var routes = require('./routes/index');
@@ -30,13 +33,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function callback () {
   console.log("Connected to DB!")
 });
 
+app.use(session({secret: '<mysecret>', saveUninitialized: true,resave: true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+
+
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
 app.use('/api', api);
 
 /// catch 404 and forward to error handler
